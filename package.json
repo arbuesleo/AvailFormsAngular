@@ -7,7 +7,7 @@
     "author": "Leonardo Jorge <leonardogomesdev@gmail.com>",
     "repository": {
         "type": "git",
-        "url": "git://github.com/revolunet/angular-carousel.git"
+        "url": "git://github.com/leogomes26/AvailFormsAngular.git"
     },
     "engines": {
         "node": ">= 0.8"
