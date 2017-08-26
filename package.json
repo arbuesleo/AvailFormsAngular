@@ -1,0 +1,21 @@
+{
+    "name": "AvailFormsAngular",
+    "description": "Gerador de Formularios desenvolvido pela AvailTech",
+    "main": "src/index.js",
+    "version": "beta",
+    "homepage": "http://revolunet.github.com/angular-carousel",
+    "author": "Leonardo Jorge <leonardogomesdev@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/revolunet/angular-carousel.git"
+    },
+    "engines": {
+        "node": ">= 0.8"
+    },
+    "licenses": [{
+        "type": "MIT",
+        "url": "http://revolunet.mit-license.org"
+    }],
+    "dependencies": {},
+    "devDependencies": {}
+}

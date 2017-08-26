@@ -1,0 +1,198 @@
+<div class="progress" ng-show="carregando">
+    <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{carregamento}}%">
+        Carregando visualização...
+    </div>
+</div>
+
+<div class="box" ng-show="!carregando">
+    <div class="box-header">
+        <h3 class="box-title" ng-bind="formData.entidades[0].labelClazz"></h3>
+        <div class="btn-group pull-right" ng-if="acoes.length > 0">
+            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                Ações
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a ng-repeat="acao in acoes" ng-click="acao.func()">
+                        <h4 ng-bind="acao.nome"></h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+            <li ng-repeat="enti in formData.entidades track by $index">
+                <a href="#entidade{{$index}}" target="_self" data-toggle="tab" ng-bind="$index == 0 ? 'Principal' : enti.labelClazz"></a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div ng-repeat="entidade in formData.entidades track by $index" class="tab-pane" id="entidade{{$index}}">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                    </div>
+                </div>
+                <form class="form-horizontal" name="forms.form_{{entidade.nomeClazz}}" id="forms.form_{{entidade.nomeClazz}}" novalidate>
+
+                    <div class="box-body">
+                        <ANY ng-switch="entidade.tipo">
+                            <ANY ng-switch-when="PRINCIPAL">
+                                <div ng-repeat="campo in entidade.campos track by $index">
+                                    <ANY ng-switch="campo.tipoCampo">
+                                        <ANY ng-switch-when="COMBOBOX">
+                                            <h1>COMBOBOX IMPLEMENTAR</h1>
+                                        </ANY>
+                                        <ANY ng-switch-when="CHECKMARK">
+                                            <div class="form-group">
+                                                <label for="senha" class="col-sm-2 control-label" ng-bind="campo.requerido ? campo.label + '*:' : campo.label + ':'"></label>
+                                                <div class="btn-group col-sm-4" style="padding-left: 15px">
+                                                    <label class="btn btn-primary" ng-repeat="op in campo.opcoes" ng-model="objEdit[campo.nome]" uib-btn-radio="'{{op}}'" ng-bind="op | opcoes"></label>
+                                                </div>
+                                            </div>
+                                        </ANY>
+                                        <ANY ng-switch-when="PESQUISA">
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">{{campo.requerido ? campo.label + '*:' : campo.label + ':'}}</label>
+                                                <div class="col-sm-4">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" placeholder="Pesquisar um registro..." disabled ng-model="objEdit[campo.nome][ getKey(1, objEdit[campo.nome])]" />
+                                                        <span class="input-group-btn">
+                                                <button type="button" class="btn btn-primary btn-flat" data-toggle="modal" ng-click="pesquisaObj2(campo, campo.nome)"><i class="fa fa-search"></i></button>
+                                            </span>
+                                                    </div>
+                                                    <p ng-if="forms['form_' + entidade.nomeClazz]['campo_' + campo.nome].$invalid && !forms['form_' + entidade.nomeClazz]['campo_' + campo.nome].$pristine" class="help-block ">Campo {{campo.label}} inválido!</p>
+                                                </div>
+                                            </div>
+
+                                        </ANY>
+
+                                        <ANY ng-switch-when="IMAGEM">
+                                            <av-img campo="campo" obj="objEdit[campo.nome]" test="teste"></av-img>
+                                        </ANY>
+
+                                        <ANY ng-switch-default>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">{{campo.requerido ? campo.label + '*:' : campo.label + ':'}}</label>
+                                                <div class="col-sm-4">
+                                                    <div ng-class="campo.tamanho < 80 ? 'col-sm-6' : (campo.tamanho < 180) ? 'col-sm-8' : 'col-sm-10'">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i ng-class="campo.tipoCampo | icoCampo"></i></span>
+                                                            <input type="text" class="form-control" id="campo_{{campo.nome}}" name="campo_{{campo.nome}}" ng-maxlength="campo.tamanho">
+                                                        </div>
+                                                        <p ng-if="forms['form_' + entidade.nomeClazz]['campo_' + campo.nome].$invalid && !forms['form_' + entidade.nomeClazz]['campo_' + campo.nome].$pristine" class="help-block ">Campo {{campo.label}} inválido!</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ANY>
+
+                                    </ANY>
+                                </div>
+                            </ANY>
+
+                            <ANY ng-switch-when="ADICIONAVEL_MUITOS">
+                                <table id="tb-{{entidade.nomeClazz}}" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th ng-repeat="campo in entidade.campos">{{campo.label}}</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="obj in objEdit[entidade.nomeClazz] track by $index">
+                                            <td ng-repeat="campo in entidade.campos" ng-bind="campo.tipoCampo == 'PESQUISA' ? (obj[campo.nome][ getKey(0, obj[campo.nome])] + ' - ' + obj[campo.nome][ getKey(1, obj[campo.nome])]) : obj[campo.nome]"></td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" ng-click="editarFilha(obj,entidade.nomeClazz, $index)" href="#modalAdd_{{entidade.nomeClazz}}" data-toggle="modal"><span class="fa fa-pencil"></span></button>
+                                                <button type="button" class="btn btn-danger" ng-click="removeObjFromList(obj, objEdit[entidade.nomeClazz])"><span class="fa fa-minus-square"></span></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn btn-primary pull-right" href="#modalAdd_{{entidade.nomeClazz}}" data-toggle="modal" ng-click="editarFilha({},entidade.nomeClazz, '')"><span class="fa  fa-plus-circle"> </span> Adicionar {{entidade.labelClazz}}</button>
+                                <av-modal-edit form-data="entidade" lista="objEdit[entidade.nomeClazz]" obj-edit="this[entidade.nomeClazz + 'edit']" index="this[entidade.nomeClazz + 'editIndex']"></av-modal-edit>
+                            </ANY>
+
+                            <ANY ng-switch-when="PESQUISAVEL_MUITOS ">
+                                <table id="tb-{{entidade.nomeClazz}}" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th ng-repeat="campo in entidade.campos">{{campo.label}}</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="obj in objEdit[entidade.nomeClazz] track by $index">
+                                            <td ng-repeat="campo in entidade.campos" ng-bind="campo.tipoCampo == 'PESQUISA' ? (obj[campo.nome][ getKey(0, obj[campo.nome])] + ' - ' + obj[campo.nome][ getKey(1, obj[campo.nome])]) : obj[campo.nome]"></td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger" ng-click="removeObjFromList(obj, objEdit[entidade.nomeClazz])"><span class="fa fa-minus-square"></span></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" ng-click="pesquisaObj(entidade, objEdit[entidade.nomeClazz])"><span class="fa  fa-search-plus"> </span> Pesquisar {{entidade.labelClazz}}</button>
+                            </ANY>
+
+                            <ANY ng-switch-when="PESQUISAVEL_UM">PESQUISAVEL_UM</ANY>
+
+                            <ANY ng-switch-when="ADICIONAVEL_UM">
+                                <div ng-repeat="campo in entidade.campos track by $index">
+                                    <ANY ng-switch="campo.tipoCampo">
+                                        <ANY ng-switch-when="COMBOBOX">
+                                            <h1>COMBOBOX IMPLEMENTAR</h1>
+                                        </ANY>
+                                        <ANY ng-switch-when="CHECKMARK">
+                                            <div class="form-group">
+                                                <label for="senha" class="col-sm-2 control-label" ng-bind="campo.requerido ? campo.label + '*:' : campo.label + ':'"></label>
+                                                <div class="btn-group" style="padding-left: 15px">
+                                                    <label class="btn btn-primary" ng-repeat="op in campo.opcoes" ng-model="objEdit[campo.nome]" uib-btn-radio="'{{op}}'" ng-bind="op | opcoes"></label>
+                                                </div>
+                                            </div>
+                                        </ANY>
+                                        <ANY ng-switch-when="PESQUISA">
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">{{campo.requerido ? campo.label + '*:' : campo.label + ':'}}</label>
+                                                <div class="col-sm-4">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" placeholder="Pesquisar um registro..." ng-required="true" disabled ng-value="objEdit[campo.nome][ getKey(0, objEdit[campo.nome])] + ' - ' + objEdit[campo.nome][ getKey(1, objEdit[campo.nome])]">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-primary btn-flat" data-toggle="modal" ng-click="pesquisaObj2(campo, campo.nome)"><i class="fa fa-search"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <p ng-if="forms['form_' + formData.nomeClazz]['campo_' + campo.nome].$invalid && !forms['form_' + formData.nomeClazz]['campo_' + campo.nome].$pristine" class="help-block ">Campo {{campo.label}} inválido!</p>
+                                            </div>
+
+                                        </ANY>
+                                        <ANY ng-switch-default>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">{{campo.requerido ? campo.label + '*:' : campo.label + ':'}}</label>
+                                                <div class="col-sm-4">
+                                                    <div ng-class="campo.tamanho < 80 ? 'col-sm-6' : (campo.tamanho < 180) ? 'col-sm-8' : 'col-sm-10'">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i ng-class="campo.tipoCampo | icoCampo"></i></span>
+                                                            <input type="text" class="form-control" id="campo_{{campo.nome}}" name="campo_{{campo.nome}}" ng-maxlength="campo.tamanho">
+                                                        </div>
+                                                        <p ng-if="forms['form_' + entidade.nomeClazz]['campo_' + campo.nome].$invalid && !forms['form_' + entidade.nomeClazz]['campo_' + campo.nome].$pristine" class="help-block ">Campo {{campo.label}} inválido!</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ANY>
+
+                                    </ANY>
+                                </div>
+                            </ANY>
+
+                        </ANY>
+                    </div>
+                </form>
+                <div class="box-footer ">
+                    <a class="btn btn-default " ng-href="#/{{telaList}}"><span class=" fa fa-close "></span> Cancelar</a>
+                    <button type="button " class="btn btn-success pull-right" ng-click="salvaRegistro(objEdit)"><span class="fa fa-check-circle "> </span> Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

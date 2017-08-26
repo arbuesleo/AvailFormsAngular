@@ -1,0 +1,64 @@
+<div class="modal fade" role="dialog" id="modalAdd_{{formData.nomeClazz}}">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" ng-bind="'Adicionar - ' + formData.labelClazz"></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" name="forms.form_{{formData.nomeClazz}}" id="forms.form_{{formData.nomeClazz}}" novalidate>
+                    <div ng-repeat="campo in formData.campos track by $index">
+                        <ANY ng-switch="campo.tipoCampo">
+                            <ANY ng-switch-when="COMBOBOX">
+                                <h1>COMBOBOX IMPLEMENTAR</h1>
+                            </ANY>
+                            <ANY ng-switch-when="CHECKMARK">
+                                <div class="form-group">
+                                    <label for="senha" class="col-sm-2 control-label" ng-bind="campo.requerido ? campo.label + '*:' : campo.label + ':'"></label>
+                                    <div class="btn-group" style="padding-left: 15px">
+                                        <label class="btn btn-primary" ng-repeat="op in campo.opcoes" ng-model="objEdit[campo.nome]" uib-btn-radio="'{{op}}'" ng-bind="op | opcoes"></label>
+                                    </div>
+                                </div>
+                            </ANY>
+                            <ANY ng-switch-when="PESQUISA">
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{campo.requerido ? campo.label + '*:' : campo.label + ':'}}</label>
+                                    <div class="col-sm-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Pesquisar um registro..." disabled ng-model="objEdit[campo.nome][ getKey(1, objEdit[campo.nome])]">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-primary btn-flat" data-toggle="modal" ng-click="pesquisaObj2(campo, campo.nome)"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <p ng-if="forms['form_' + formData.nomeClazz]['campo_' + campo.nome].$invalid && !forms['form_' + formData.nomeClazz]['campo_' + campo.nome].$pristine" class="help-block ">Campo {{campo.label}} inválido!</p>
+                                </div>
+
+                            </ANY>
+                            <ANY ng-switch-default>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{campo.requerido ? campo.label + '*:' : campo.label + ':'}}</label>
+                                    <div class="col-sm-4">
+                                        <div ng-class="campo.tamanho < 80 ? 'col-sm-8' : (campo.tamanho < 180) ? 'col-sm-10' : 'col-sm-12'">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i ng-class="campo.tipoCampo | icoCampo"></i></span>
+                                                <input type="text" class="form-control" id="campo_{{campo.nome}}" name="campo_{{campo.nome}}" ng-maxlength="campo.tamanho">
+                                            </div>
+                                            <p ng-if="forms['form_' + formData.nomeClazz]['campo_' + campo.nome].$invalid && !forms['form_' + formData.nomeClazz]['campo_' + campo.nome].$pristine" class="help-block ">Campo {{campo.label}} inválido!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ANY>
+
+                        </ANY>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="salvarEntidade()">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-xs-12 form-inline">
+        <div class="form-group col-xs-12 col-md-3">
+            <label>Filtros*</label>
+            <select class="form-control select2" style="width: 100%;" ng-model="campoPesquisa">
+                  <option ng-repeat="label in labelsPes track by $index" value="{{camposPes[$index]}}">{{label}}</option>
+                </select>
+        </div>
+
+        <div class="form-group col-xs-12 col-md-2">
+            <label>Condição*</label>
+            <select class="form-control select2" style="width: 100%;" ng-model="condicaoPesquisa">
+                  <option value="igual" selected="true">Igual</option>
+                  <option value="contem">Contem</option>
+                  <option value="diferente">Diferente</option>
+                </select>
+        </div>
+
+        <div class="row-fluid">&nbsp;</div>
+
+        <div class="form-group col-xs-12 col-md-4">
+            <div class="input-group input-group-sm">
+                <input type="text" class="form-control" ng-model="citerioPes">
+                <span class="input-group-btn">
+                      <button type="button" class="btn btn-info btn-flat" ng-click="pesquisar()"><span class="fa fa-search"></span></button>
+                </span>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row-fluid">&nbsp;</div>

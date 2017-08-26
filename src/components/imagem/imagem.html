@@ -1,0 +1,15 @@
+<!--http://markusslima.github.io/bootstrap-filestyle/-->
+<div class="col-md-12">
+    <div class="form-group col-md-5">
+        <label class="col-sm-5" ng-bind="campo.label + ':' + (campo.requerido ? '*' : '')"></label>
+        <input type="file" class="filestyle" base-sixty-four-input ng-model="obj" parser="resizeImage">
+    </div>
+</div>
+<div class="form-group col-md-12" ng-if="obj.base64">
+    <div class="row col-md-offset-2" style="text-align: center">
+        <div class="col-sm-6 col-md-4">
+            <img class="profile-user-img img-responsive img-circle" ng-src="{{'data:' + obj.filetype + ';base64,' + obj.base64}}" alt="Imagem">
+            <a ng-click="clearImg()" class="btn btn-danger" role="button">Remover</a>
+        </div>
+    </div>
+</div>
