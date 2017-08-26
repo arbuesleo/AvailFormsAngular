@@ -2,7 +2,7 @@
     "name": "AvailFormsAngular",
     "description": "Gerador de Formularios desenvolvido pela AvailTech",
     "main": "src/index.js",
-    "version": "beta",
+    "version": "1.0.0",
     "homepage": "http://revolunet.github.com/angular-carousel",
     "author": "Leonardo Jorge <leonardogomesdev@gmail.com>",
     "repository": {
