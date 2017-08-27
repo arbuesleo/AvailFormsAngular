@@ -2,7 +2,7 @@ angular.module('AvFormsGenerator')
     .directive('avModalEdit', function(RestSrv, UiSrv, $timeout, $compile, $filter, ngNotify, $uibModal, ModalSrv) {
         return {
             restrict: 'E',
-            templateUrl: 'src/components/modal/modalEdit.html',
+            templateUrl: 'src/AvailFormsAngular/components/modal/modalEdit.html',
             transclude: true,
             scope: {
                 formData: '=',

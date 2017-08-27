@@ -2,7 +2,7 @@ angular.module('AvFormsGenerator')
     .directive('avForm', function(RestSrv, UiSrv, $timeout, $compile, $filter, ngNotify, $uibModal, ModalSrv) {
         return {
             restrict: 'E',
-            templateUrl: 'src/components/Form/formEdit.html',
+            templateUrl: 'src/AvailFormsAngular/components/Form/formEdit.html',
             transclude: true,
             link: function(scope, element) {
                 scope.forms = [{}];

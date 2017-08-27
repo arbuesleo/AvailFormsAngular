@@ -2,7 +2,7 @@ angular.module('AvFormsGenerator')
     .directive('avList', function(RestSrv, UiSrv, $timeout, $compile, $filter) {
         return {
             restrict: 'E',
-            templateUrl: 'src/components/Listagem/formList.html',
+            templateUrl: 'src/AvailFormsAngular/components/Listagem/formList.html',
             transclude: true,
             link: function(scope, element) {
                 scope.carregamento = 25;

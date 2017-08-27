@@ -1,6 +1,6 @@
 angular.module('AvFormsGenerator')
     .component('messageComponent', {
-        templateUrl: 'src/components/message/message.html',
+        templateUrl: 'src/AvailFormsAngular/components/message/message.html',
         bindings: {
             resolve: '<',
             close: '&',

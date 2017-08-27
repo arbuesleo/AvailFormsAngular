@@ -2,7 +2,7 @@ angular.module('AvFormsGenerator')
     .directive('avImg', function(RestSrv, UiSrv, $timeout, $compile, $filter, $q) {
         return {
             restrict: 'E',
-            templateUrl: 'src/components/imagem/imagem.html',
+            templateUrl: '/src/AvailFormsAngular/components/imagem/imagem.html',
             transclude: true,
             scope: {
                 campo: '=',

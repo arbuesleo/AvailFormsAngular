@@ -2,7 +2,7 @@ angular.module('AvFormsGenerator')
     .directive('avPesquisa', function(RestSrv, UiSrv, $timeout, $compile, $filter) {
         return {
             restrict: 'E',
-            templateUrl: 'src/components/Pesquisa/componentPesquisa.html',
+            templateUrl: 'src/AvailFormsAngular/components/Pesquisa/componentPesquisa.html',
             transclude: true,
             scope: {
                 camposPes: '=',

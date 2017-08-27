@@ -1,6 +1,6 @@
 angular.module('AvFormsGenerator')
     .component('avModalPesquisa', {
-        templateUrl: 'src/components/modal/modalPesquisa.html',
+        templateUrl: 'src/AvailFormsAngular/components/modal/modalPesquisa.html',
         bindings: {
             resolve: '<',
             close: '&',
