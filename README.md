@@ -257,6 +257,7 @@ Para utiliza-la é precisso criar na view a tag abaixo:
         }];
     ```
     Se existir esse objeto no formulário irá aparecer um botão de ações conforme imagem abaixo:
+	
     ![btnAções](https://i.imgur.com/lxOlPkm.png)
 
 Para ver melhor o funcionamento do framework recomendo que veja o exemplo disponível no repositório [ExemploAvailForms](https://github.com/leogomes26/AvailFormsExemplo.git)
