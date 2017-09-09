@@ -3,14 +3,18 @@
 
 angular.module('AvFormsGenerator', [
     'ngRoute',
-    'ui.utils.masks',
-    'angularFileUpload',
-    'naif.base64',
-    'tbImageProcessor',
-    'ui.bootstrap',
-    'ui.directives',
-    'ngNotify',
     'ngCookies',
     'ngStorage',
-    'angular-carousel'
+    'ngNotify',
+    'ui.bootstrap',
+    'naif.base64',
+    'ui.utils.masks'
 ]);
+
+
+/*
+'ui.utils.masks',
+'angularFileUpload'
+'tbImageProcessor',
+'ui.directives',
+'angular-carousel'*/
