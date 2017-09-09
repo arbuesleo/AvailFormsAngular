@@ -14,12 +14,8 @@ AvailFormsAngular é um framework criado com [AngularJs](https://angularjs.org/)
  - [Instalação](#instalacao)
     - [Dependências](#dependencias)
  - [Diretivas](#diretivas)
-    - [<av-list>](#avlist)
-    - [<av-form>](#avform)
-    - [@Image](#imagem)
- - [Relacionamento entre entidades](#relacionamentos)
- - [Geração de dados do formulário](#gerDadosForm)
- - [Geração de dados de listagem](#gerDadosListagem)
+    - [av-list](#avlist)
+    - [av-form](#avform)    
 
 ## <a name="instalacao"></a> Instalação
 
@@ -173,7 +169,7 @@ angular.module('App', [
 
 As anotações são a base de nosso projeto, é atrvés delas que iremos mapear nossas classes para geração das dados de nossa tela. São 3 as principais anotações, @Form, uma anotação a nível de classe que irá identificar essa classe como um formulário.
 
-## <a name="avlist"></a> <av-list></av-list>
+## <a name="avlist"></a> av-list
 Essa diretiva deve ser usada para a listagem de registros referente a uma entidade, o resultado final será conforme imagem baixo:
 ![listage,](https://i.imgur.com/shX1Hef.png)
 - Para utilizar precisamos criar um HTML com a diretiva:
@@ -206,7 +202,7 @@ Esse serviço deverá ser capaz de criar a query de consulta com os parâmetros 
 
 Com esses dados o componente fará a listagem automaticamente.
 
-##<a name="avform"></a> <av-form></av-form>
+##<a name="avform"></a> av-form
 
 Essa diretiva é responsável por criar o formulário para edição e inserção de uma entidade, o resultado final disso será algo parecido com a imagem abaixo:
 
