@@ -36,11 +36,11 @@ angular.module('AvFormsGenerator')
                     break;
 
                 case 'DATA':
-                    return "ui-date-mask = 'DD-MM-YYYY'";
+                    return "ui-date-mask";
                     break;
 
                 case 'HORA':
-                    return "ui-time-mask = 'short'";
+                    return "ui-time-mask";
                     break;
 
                 case 'MOEDA':
