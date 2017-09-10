@@ -123,12 +123,12 @@ Caso essas ainda não estejam em seu projeto elas devem ser adicionadas, abaixo 
         <script src="src/AvailFormsAngular/admLTE/plugins/iCheck/icheck.min.js"></script>
         <script src="src/AvailFormsAngular/admLTE/plugins/bootstrap-filestyle/bootstrap-filestyle.js"></script>
         <script src="src/AvailFormsAngular/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="src/AvailFormsAngular/libs/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js"></script>
-    <script src="src/AvailFormsAngular/admLTE/plugins/input-mask/jquery.inputmask.js"></script>
-    <script src="src/AvailFormsAngular/admLTE/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-    <script src="src/AvailFormsAngular/admLTE/plugins/input-mask/jquery.inputmask.extensions.js"></script>
-    <script src="src/AvailFormsAngular/admLTE/plugins/input-mask/jquery.inputmask.extensions.js"></script>
-    <script src="src/AvailFormsAngular/libs/ckeditor/ckeditor.js"></script>
+		<script src="src/AvailFormsAngular/libs/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js"></script>
+		<script src="src/AvailFormsAngular/admLTE/plugins/input-mask/jquery.inputmask.js"></script>
+		<script src="src/AvailFormsAngular/admLTE/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+		<script src="src/AvailFormsAngular/admLTE/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+		<script src="src/AvailFormsAngular/admLTE/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+		<script src="src/AvailFormsAngular/libs/ckeditor/ckeditor.js"></script>
         <!-- AdminLTE -->
 
         <!--Input Masks-->
