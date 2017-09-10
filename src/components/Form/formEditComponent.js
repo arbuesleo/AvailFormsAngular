@@ -25,15 +25,28 @@ angular.module('AvFormsGenerator')
                                 angular.element(document.querySelector('#campo_' + campo.nome)).attr('ng-required', campo.requerido);
                                 angular.element(document.querySelector('#campo_' + campo.nome)).attr('ng-maxlength', campo.tamanho);
 
-                                if (diretiva) {
+                                if (diretiva == 'ui-date-mask') {
+                                    angular.element(document.querySelector('#campo_' + campo.nome)).removeAttr('ng-maxlength', '');
+                                    $('#campo_' + campo.nome).datepicker({
+                                        autoclose: true,
+                                        language: 'pt-BR',
+                                        format: 'dd/mm/yyyy'
+                                    });
+                                } else if (diretiva == 'ui-time-mask') {
+                                    angular.element(document.querySelector('#campo_' + campo.nome)).removeAttr('ng-maxlength', '');
+                                    angular.element(document.querySelector('#campo_' + campo.nome)).attr(diretiva, 'short');
+                                } else if (diretiva) {
                                     angular.element(document.querySelector('#campo_' + campo.nome)).removeAttr('ng-maxlength', '');
                                     angular.element(document.querySelector('#campo_' + campo.nome)).attr(diretiva, '');
-                                } else if (tipCam) {
+                                }
+                                if (tipCam) {
                                     angular.element(document.querySelector('#campo_' + campo.nome)).attr('type', tipCam);
                                 } else if (campo.tipoCampo == 'COMBOBOX') {
 
                                 } else if (campo.tipoCampo == 'CHECKMARK') {
 
+                                } else if (campo.tipoCampo == 'TEXTORICO') {
+                                    angular.element(document.querySelector('#campo_' + campo.nome)).attr('ck-editor', '');
                                 }
                                 $compile(angular.element(document.querySelector('#campo_' + campo.nome)))(scope);
                             }
@@ -169,6 +182,28 @@ angular.module('AvFormsGenerator')
                 scope.getKey = function(index, obj) {
                     return Object.keys(obj)[index];
                 }
+            }
+        };
+    }).directive('ckEditor', function() {
+        return {
+            require: '?ngModel',
+            link: function($scope, elm, attr, ngModel) {
+
+                var ck = CKEDITOR.replace(elm[0]);
+
+                ck.on('instanceReady', function() {
+                    ck.setData(ngModel.$viewValue);
+                });
+
+                ck.on('pasteState', function() {
+                    $scope.$apply(function() {
+                        ngModel.$setViewValue(ck.getData());
+                    });
+                });
+
+                ngModel.$render = function(value) {
+                    ck.setData(ngModel.$modelValue);
+                };
             }
         };
     });

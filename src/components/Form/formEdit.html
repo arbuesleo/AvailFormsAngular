@@ -72,6 +72,18 @@
                                         <ANY ng-switch-when="IMAGEM">
                                             <av-img campo="campo" obj="objEdit[campo.nome]" test="teste"></av-img>
                                         </ANY>
+                                        <ANY ng-switch-when="TEXTORICO">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">{{campo.requerido ? campo.label + '*:' : campo.label + ':'}}</label>
+                                                <div class="col-sm-12">
+                                                    <div ng-class="col-xs-12">
+                                                        <textarea id="campo_{{campo.nome}}" name="campo_{{campo.nome}}" rows="10" cols="100" ng-maxlength="campo.tamanho">
+                                                            </textarea>
+                                                        <p ng-if="forms['form_' + entidade.nomeClazz]['campo_' + campo.nome].$invalid && !forms['form_' + entidade.nomeClazz]['campo_' + campo.nome].$pristine" class="help-block ">Campo {{campo.label}} inválido!</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ANY>
 
                                         <ANY ng-switch-default>
                                             <div class="form-group">
