@@ -78,6 +78,7 @@ Caso essas ainda não estejam em seu projeto elas devem ser adicionadas, abaixo 
     <link rel="stylesheet" href="src/AvailFormsAngular/admLTE/dist/css/skins/_all-skins.css">
     <link rel="stylesheet" href="src/AvailFormsAngular/admLTE/plugins/iCheck/all.css">
     <link rel="stylesheet" href="src/AvailFormsAngular/admLTE/plugins/select2/select2.min.css">
+    <link rel="stylesheet" href="src/AvailFormsAngular/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <!-- AdminLTE -->
 
     <!--NgNotify-->
