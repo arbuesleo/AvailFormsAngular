@@ -48,7 +48,7 @@
                                             <div class="form-group">
                                                 <label for="senha" class="col-sm-2 control-label" ng-bind="campo.requerido ? campo.label + '*:' : campo.label + ':'"></label>
                                                 <div class="btn-group col-sm-4" style="padding-left: 15px">
-                                                    <label class="btn btn-primary" ng-repeat="op in campo.opcoes" ng-model="objEdit[campo.nome]" uib-btn-radio="'{{op}}'" ng-bind="op | opcoes"></label>
+                                                    <label ng-disabled = "!campo.editavel" class="btn btn-primary" ng-repeat="op in campo.opcoes" ng-model="objEdit[campo.nome]" uib-btn-radio="'{{op}}'" ng-bind="op | opcoes"></label>
                                                 </div>
                                             </div>
                                         </ANY>
@@ -60,7 +60,7 @@
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" placeholder="Pesquisar um registro..." disabled ng-model="objEdit[campo.nome][ getKey(1, objEdit[campo.nome])]" />
                                                         <span class="input-group-btn">
-                                                <button type="button" class="btn btn-primary btn-flat" data-toggle="modal" ng-click="pesquisaObj2(campo, campo.nome)"><i class="fa fa-search"></i></button>
+                                                <button type="button" ng-disabled = "!campo.editavel" class="btn btn-primary btn-flat" data-toggle="modal" ng-click="pesquisaObj2(campo, campo.nome)"><i class="fa fa-search"></i></button>
                                             </span>
                                                     </div>
                                                     <p ng-if="forms['form_' + entidade.nomeClazz]['campo_' + campo.nome].$invalid && !forms['form_' + entidade.nomeClazz]['campo_' + campo.nome].$pristine" class="help-block ">Campo {{campo.label}} inválido!</p>
