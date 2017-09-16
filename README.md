@@ -263,6 +263,11 @@ Para utiliza-la é precisso criar na view a tag abaixo:
     Se existir esse objeto no formulário irá aparecer um botão de ações conforme imagem abaixo:
 	
     ![btnAções](https://i.imgur.com/lxOlPkm.png)
+	
+	Podemos também criar campos adicionais, basta adicionar o HTML do campo em um array no seu controller chamado $scope.camposAdicionais
+	```js
+     $scope.camposAdicionais = ["<label for='email' class='col-sm-2 control-label'>Usuário*</label> <div class='col-sm-4'> <div class='input-group'> <span class='input-group-addon'><i class='fa fa-align-justify'></i></span> <input type='text' class='form-control' ng-model='objEdit.email' disabled> </div> </div>"];
+    ```
 
 Para ver melhor o funcionamento do framework recomendo que veja o exemplo disponível no repositório [ExemploAvailForms](https://github.com/leogomes26/AvailFormsExemplo.git)
 

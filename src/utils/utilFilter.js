@@ -132,4 +132,8 @@ angular.module('AvFormsGenerator')
                     break;
             }
         };
-    });
+    }).filter('to_trusted', ['$sce', function($sce){
+        return function(text) {
+            return $sce.trustAsHtml(text);
+        };
+    }]);

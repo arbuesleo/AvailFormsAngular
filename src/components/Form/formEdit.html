@@ -102,6 +102,11 @@
 
                                     </ANY>
                                 </div>
+                                <!--Campos adicionais, adicionados na variavel camposAdicionais do scope-->
+                                <div ng-repeat = "campAdc in camposAdicionais">
+                                    <div class="form-group" ng-bind-html="campAdc | to_trusted" compile>
+                                    </div>
+                                </div>
                             </ANY>
 
                             <ANY ng-switch-when="ADICIONAVEL_MUITOS">
